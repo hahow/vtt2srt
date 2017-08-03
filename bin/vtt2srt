@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const yargs = require('yargs').argv;
+
+const baseDir = path.resolve(__dirname + '/..')
+const vtt2srt = require(`${baseDir}/lib/index`);
+
+const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
+
+const [vttFile, srtFile] = yargs._;
+
+readFileAsync(vttFile)
+    .then(vttStr => vtt2srt(vttStr))
+    .then(srtStr => {
+        if (!srtFile) {
+            return console.log(srtStr);
+        }
+        return writeFileAsync(srtFile, srtStr);
+    })
+    .catch(console.error);

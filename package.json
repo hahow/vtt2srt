@@ -6,7 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["vtt", "srt", "convert", "converter"],
+  "keywords": [
+    "vtt",
+    "srt",
+    "convert",
+    "converter"
+  ],
   "author": "Heng-Yi Wu <@henry40408>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "~5.4.2",
+    "yargs": "~8.0.2"
+  }
 }
