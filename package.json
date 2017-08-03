@@ -1,0 +1,12 @@
+{
+  "name": "vtt2srt",
+  "version": "0.1.0",
+  "description": "Convert VTT to VALID SRT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["vtt", "srt", "convert", "converter"],
+  "author": "Heng-Yi Wu <@henry40408>",
+  "license": "MIT"
+}
