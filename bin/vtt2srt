@@ -8,17 +8,18 @@ const yargs = require('yargs').argv;
 const baseDir = path.resolve(__dirname + '/..')
 const vtt2srt = require(`${baseDir}/lib/index`);
 
-const readFileAsync = util.promisify(fs.readFile);
-const writeFileAsync = util.promisify(fs.writeFile);
-
 const [vttFile, srtFile] = yargs._;
 
-readFileAsync(vttFile)
-    .then(vttStr => vtt2srt(vttStr))
-    .then(srtStr => {
-        if (!srtFile) {
-            return console.log(srtStr);
-        }
-        return writeFileAsync(srtFile, srtStr);
-    })
-    .catch(console.error);
+fs.readFile(vttFile, (err, buffer) => {
+    if (err) {
+        return console.error(err);
+    }
+
+    return vtt2srt(buffer.toString())
+        .then(srtStr => {
+            if (!srtFile) {
+                return console.log(srtStr);
+            }
+            return fs.writeFile(srtFile, srtStr);
+        });
+});
