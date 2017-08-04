@@ -4,6 +4,7 @@
   "description": "Convert VTT to valid SRT",
   "main": "lib/index.js",
   "scripts": {
+    "lint": "eslint lib/**/*.js lib/**/*.spec.js",
     "test": "tape lib/**/*.spec.js | tap-difflet"
   },
   "keywords": [
@@ -19,6 +20,9 @@
     "yargs": "~8.0.2"
   },
   "devDependencies": {
+    "eslint": "~4.3.0",
+    "eslint-config-standard": "~10.2.1",
+    "standard": "~10.0.2",
     "tap-difflet": "~0.7.0",
     "tape": "~4.8.0"
   },
