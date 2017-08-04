@@ -1,4 +1,4 @@
-# vtt2srt
+# vtt2srt [![CircleCI](https://circleci.com/gh/henry40408/vtt2srt.svg?style=shield)](https://circleci.com/gh/henry40408/vtt2srt)
 
 > Convert WEBVTT to valid SRT
 
