@@ -32,7 +32,7 @@ WARNING: content of file would be WIPED OUT`
     default: vtt2srt.TO_FORMATS.SRT,
     describe: 'format to convert to'
   })
-  .demandOption(['i'], 'please specify vtt file to convert')
+  .demandOption(['input'], 'please specify file to convert')
   .help().argv
 
 const { input, output } = yargs
