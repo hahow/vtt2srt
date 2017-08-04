@@ -30,7 +30,7 @@ Show me the result.
 $ vtt2srt -i somevttfile.vtt
 ```
 
-For anything undocumented.
+For more information.
 
 ```shell
 $ vtt2srt --help
