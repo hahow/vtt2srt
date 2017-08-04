@@ -1,25 +1,45 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
-const yargs = require('yargs').argv;
+const fs = require('fs')
+const path = require('path')
 
-const baseDir = path.resolve(__dirname + '/..')
-const vtt2srt = require(`${baseDir}/lib/index`);
+const baseDir = path.resolve(path.join(__dirname, '..'))
+const vtt2srt = require(`${baseDir}/lib/index`)
 
-const [vttFile, srtFile] = yargs._;
+const values = o => Object.keys(o).map(k => o[k])
 
-fs.readFile(vttFile, (err, buffer) => {
-    if (err) {
-        return console.error(err);
-    }
+const yargs = require('yargs')
+  .usage('usage: $0 -i vtt_file [-o srt_file]')
+  .option('input', {
+    alias: 'i',
+    coerce: fs.readFileSync,
+    describe: 'file holds content to be converted'
+  })
+  .option('output', {
+    alias: 'o',
+    describe: `file to hold converted result,
+WARNING: content of file would be WIPED OUT`
+  })
+  .option('from', {
+    alias: 'f',
+    choices: values(vtt2srt.FROM_FORMATS),
+    default: vtt2srt.FROM_FORMATS.VTT,
+    describe: 'format to convert from'
+  })
+  .option('to', {
+    alias: 't',
+    choices: values(vtt2srt.TO_FORMATS),
+    default: vtt2srt.TO_FORMATS.SRT,
+    describe: 'format to convert to'
+  })
+  .demandOption(['i'], 'please specify vtt file to convert')
+  .help().argv
 
-    return vtt2srt(buffer.toString())
-        .then(srtStr => {
-            if (!srtFile) {
-                return console.log(srtStr);
-            }
-            return fs.writeFile(srtFile, srtStr);
-        });
-});
+const { input, output } = yargs
+
+vtt2srt(input.toString()).then(srtStr => {
+  if (!output) {
+    return console.log(srtStr)
+  }
+  return fs.writeFile(output, srtStr)
+})
