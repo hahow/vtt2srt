@@ -1,12 +1,39 @@
 {
-  "name": "vtt2srt",
-  "version": "0.1.0",
-  "description": "Convert VTT to VALID SRT",
-  "main": "index.js",
+  "name": "@henry40408/vtt2srt",
+  "version": "1.0.0",
+  "description": "Convert VTT to valid SRT",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint lib/**/*.js lib/**/*.spec.js",
+    "test": "tape lib/**/*.spec.js | tap-difflet"
   },
-  "keywords": ["vtt", "srt", "convert", "converter"],
+  "keywords": [
+    "vtt",
+    "srt",
+    "convert",
+    "converter"
+  ],
   "author": "Heng-Yi Wu <@henry40408>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "~5.4.2",
+    "yargs": "~8.0.2"
+  },
+  "devDependencies": {
+    "eslint": "~4.3.0",
+    "eslint-config-standard": "~10.2.1",
+    "standard": "~10.0.2",
+    "tap-difflet": "~0.7.0",
+    "tape": "~4.8.0"
+  },
+  "bin": {
+    "vtt2srt": "./bin/vtt2srt"
+  },
+  "engines": {
+    "node": "~6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henry40408/vtt2srt"
+  }
 }
