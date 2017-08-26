@@ -12,7 +12,7 @@ const yargs = require('yargs')
   .usage('usage: $0 -i vtt_file [-o srt_file]')
   .option('input', {
     alias: 'i',
-    coerce: fs.readFileSync,
+    coerce: fs.createReadStream,
     describe: 'file holds content to be converted'
   })
   .option('output', {
@@ -37,9 +37,6 @@ WARNING: content of file would be WIPED OUT`
 
 const { input, output } = yargs
 
-vtt2srt(input.toString()).then(srtStr => {
-  if (!output) {
-    return console.log(srtStr)
-  }
-  return fs.writeFile(output, srtStr)
-})
+const writeStream = output ? fs.createWriteStream(output) : process.stdout
+
+vtt2srt(input).pipe(writeStream)

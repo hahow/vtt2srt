@@ -1,4 +1,4 @@
-# vtt2srt [![CircleCI](https://circleci.com/gh/henry40408/vtt2srt.svg?style=shield)](https://circleci.com/gh/henry40408/vtt2srt)
+# vtt2srt [![CircleCI](https://circleci.com/gh/henry40408/vtt2srt.svg?style=shield)](https://circleci.com/gh/henry40408/vtt2srt) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > Convert WEBVTT to valid SRT
 
