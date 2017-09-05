@@ -1,5 +1,5 @@
 {
-  "name": "@henry40408/vtt2srt",
+  "name": "vtt2srt",
   "version": "0.0.0",
   "description": "Convert VTT to valid SRT",
   "main": "lib/index.js",
