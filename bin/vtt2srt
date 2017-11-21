@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const path = require('path')
+let fs = require('fs')
+let path = require('path')
 
-const baseDir = path.resolve(path.join(__dirname, '..'))
-const vtt2srt = require(`${baseDir}/lib/index`)
+let baseDir = path.resolve(path.join(__dirname, '..'))
+let vtt2srt = require(`${baseDir}/lib/index`)
 
-const values = o => Object.keys(o).map(k => o[k])
+let values = o => Object.keys(o).map(k => o[k])
 
-const yargs = require('yargs')
+let yargs = require('yargs')
   .usage('usage: $0 -i vtt_file [-o srt_file]')
   .option('input', {
     alias: 'i',
@@ -35,8 +35,8 @@ WARNING: content of file would be WIPED OUT`
   .demandOption(['input'], 'please specify file to convert')
   .help().argv
 
-const { input, output } = yargs
+let { input, output } = yargs
 
-const writeStream = output ? fs.createWriteStream(output) : process.stdout
+let writeStream = output ? fs.createWriteStream(output) : process.stdout
 
 vtt2srt(input).pipe(writeStream)

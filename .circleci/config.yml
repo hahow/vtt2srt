@@ -3,15 +3,15 @@ jobs:
   build:
     docker:
       - image: circleci/node:boron
-    working_directory: ~/repo
+    working_directory: ~/vtt2srt
     steps:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package.json" }}
+            - yarn-{{ checksum "yarn.lock" }}
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: yarn-{{ checksum "yarn.lock" }}
       - run: yarn test
